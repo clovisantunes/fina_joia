@@ -1,0 +1,414 @@
+@import '../../styles/global.scss';
+
+.container {
+  padding: 80px 5%;
+  background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, $cor-secundaria 0%, $cor-primaria 100%);
+  }
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 50px;
+  
+  .sectionTitle {
+    font-size: 2.5rem;
+    color: $cor-primaria;
+    margin-bottom: 15px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: $cor-secundaria;
+    }
+  }
+  
+  .errorMessage {
+    color: #d32f2f;
+    font-size: 1rem;
+    margin-top: 20px;
+  }
+}
+
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.productCardSkeleton {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  
+  .imageSkeleton {
+    height: 250px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  .contentSkeleton {
+    padding: 20px;
+    
+    .titleSkeleton {
+      height: 20px;
+      width: 80%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      margin-bottom: 15px;
+      border-radius: 4px;
+    }
+    
+    .priceSkeleton {
+      height: 25px;
+      width: 60%;
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 4px;
+    }
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.productCard {
+  height: 100%;
+  
+  .cardInner {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+  }
+  
+  .productImageContainer {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    
+    .productImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    
+    .imagePlaceholder {
+      width: 100%;
+      height: 100%;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .imageOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.3);
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+      
+      .quickViewButton {
+        background: white;
+        color: $cor-primaria;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        transform: translateY(20px);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        
+        &:hover {
+          background: $cor-primaria;
+          color: white;
+        }
+      }
+    }
+    
+    &:hover {
+      .productImage {
+        transform: scale(1.05);
+      }
+      
+      .imageOverlay {
+        opacity: 1;
+        
+        .quickViewButton {
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+  
+  .productInfo {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    
+    .productTitle {
+      font-size: 1.2rem;
+      color: $cor-texto;
+      margin-bottom: 15px;
+      font-weight: 600;
+      min-height: 60px;
+    }
+  }
+  
+  .pricing {
+    margin-top: auto;
+    margin-bottom: 20px;
+    
+    .regularPrice {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      
+      .priceLabel {
+        font-size: 0.85rem;
+        color: lighten($cor-texto, 20%);
+      }
+      
+      .priceValue {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $cor-texto;
+      }
+    }
+    
+    .pixPrice {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      .priceLabel {
+        font-size: 0.85rem;
+        color: lighten($cor-texto, 20%);
+      }
+      
+      .priceValue {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: $cor-primaria;
+      }
+    }
+  }
+  
+  .actionButtons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    
+    .detailsButton {
+      flex: 1;
+      padding: 12px;
+      background: white;
+      color: $cor-primaria;
+      border: 1px solid $cor-primaria;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      
+      &:hover {
+        background: $cor-primaria;
+        color: white;
+        transform: translateY(-2px);
+      }
+    }
+    
+    .buyButton {
+      flex: 1;
+      padding: 12px;
+      background: linear-gradient(135deg, $cor-secundaria 0%, lighten($cor-secundaria, 10%) 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      
+      &:hover {
+        background: linear-gradient(135deg, lighten($cor-secundaria, 5%) 0%, $cor-secundaria 100%);
+        box-shadow: 0 4px 12px rgba($cor-secundaria, 0.3);
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin: 0 auto;
+  
+  .emptyIcon {
+    font-size: 3rem;
+    color: lighten($cor-texto, 40%);
+    margin-bottom: 20px;
+  }
+  
+  .emptyMessage {
+    font-size: 1.1rem;
+    color: lighten($cor-texto, 20%);
+    margin-bottom: 25px;
+  }
+  
+  .emptyAction {
+    padding: 12px 24px;
+    background: $cor-primaria;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: darken($cor-primaria, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($cor-primaria, 0.2);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 60px 4%;
+  }
+  
+  .sectionHeader {
+    .sectionTitle {
+      font-size: 2.2rem;
+    }
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+  }
+}
+
+@media (max-width: 992px) {
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+  
+  .productCard {
+    .productImageContainer {
+      height: 220px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 50px 3%;
+    
+    .sectionHeader {
+      margin-bottom: 30px;
+      
+      .sectionTitle {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  
+  .productsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sectionHeader {
+    .sectionTitle {
+      font-size: 1.6rem;
+    }
+  }
+  
+  .productsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .productCard {
+    .actionButtons {
+      flex-direction: column;
+      
+      .detailsButton, .buyButton {
+        width: 100%;
+      }
+    }
+  }
+}

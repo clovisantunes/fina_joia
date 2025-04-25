@@ -1,0 +1,165 @@
+/* Estilos para o modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+  }
+  
+  .modalContent {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalFadeIn 0.3s ease;
+  }
+  
+  .modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #eee;
+  
+    h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0.5rem;
+  
+    &:hover {
+      color: #333;
+    }
+  }
+  
+  .editForm {
+    padding: 1.5rem;
+  }
+  
+  .formGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .formGroup {
+    margin-bottom: 1rem;
+  
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #444;
+    }
+  
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+  
+      &:focus {
+        outline: none;
+        border-color: #6f42c1;
+      }
+    }
+  
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  
+    input {
+      width: auto;
+    }
+  }
+  
+  .errorMessage {
+    color: #dc3545;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    background: #f8d7da;
+    border-radius: 4px;
+  }
+  
+  .formActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    margin-top: 1.5rem;
+  
+    button {
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+  }
+  
+  .cancelButton {
+    background: #f1f1f1;
+    color: #333;
+    border: none;
+  
+    &:hover {
+      background: #e1e1e1;
+    }
+  }
+  
+  .saveButton {
+    background: #6f42c1;
+    color: white;
+    border: none;
+  
+    &:hover {
+      background: #5a32a3;
+    }
+  
+    &:disabled {
+      background: #b9a0e6;
+      cursor: not-allowed;
+    }
+  }
+  
+  @keyframes modalFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

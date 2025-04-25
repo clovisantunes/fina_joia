@@ -1,0 +1,241 @@
+.footer {
+    background: #1f0411;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+  
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #d4af37 0%, #f1c40f 100%);
+    }
+  }
+  
+  .footerTop {
+    padding: 60px 5% 40px;
+  }
+  
+  .footerContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+  }
+  
+  .footerColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      position: relative;
+      padding-bottom: 10px;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 50px;
+        height: 2px;
+        background: #d4af37;
+      }
+    }
+  }
+  
+  .footerLogo {
+    max-width: 180px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1);
+  }
+  
+  .footerAbout {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .socialIcons {
+    display: flex;
+    gap: 15px;
+    
+    a {
+      color: #fff;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        color: #d4af37;
+        transform: translateY(-3px);
+      }
+    }
+  }
+  
+  .footerLinks {
+    list-style: none;
+    
+    li {
+      margin-bottom: 12px;
+    }
+    
+    a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: #d4af37;
+        transition: width 0.3s ease;
+      }
+      
+      &:hover {
+        color: #fff;
+        padding-left: 5px;
+        
+        &::after {
+          width: 20px;
+        }
+      }
+    }
+  }
+  
+  .contactInfo {
+    list-style: none;
+    
+    li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 15px;
+      color: #ccc;
+      line-height: 1.5;
+      
+      svg {
+        margin-right: 12px;
+        color: #d4af37;
+        margin-top: 3px;
+        flex-shrink: 0;
+      }
+      
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  
+  .footerBottom {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px 5%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      text-align: left;
+    }
+  }
+  
+  .copyright {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    
+    @media (min-width: 768px) {
+      margin-bottom: 0;
+    }
+  }
+  
+  .paymentMethods {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+    }
+    
+    span {
+      color: #999;
+      font-size: 0.9rem;
+    }
+  }
+  
+  .paymentIcons {
+    display: flex;
+    gap: 10px;
+    
+    i {
+      display: inline-block;
+      width: 40px;
+      height: 25px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: grayscale(100%) brightness(2);
+      transition: filter 0.3s ease;
+      
+      &:hover {
+        filter: grayscale(0) brightness(1);
+      }
+      
+      &.visa {
+        background-image: url('/images/payments/visa.svg');
+      }
+      
+      &.mastercard {
+        background-image: url('/images/payments/mastercard.svg');
+      }
+      
+      &.amex {
+        background-image: url('/images/payments/amex.svg');
+      }
+      
+      &.pix {
+        background-image: url('/images/payments/pix.svg');
+      }
+      
+      &.boleto {
+        background-image: url('/images/payments/boleto.svg');
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footerTop {
+      padding: 40px 20px 30px;
+    }
+    
+    .footerContainer {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+    
+    .footerColumn {
+      h3 {
+        margin-bottom: 15px;
+      }
+    }
+  }

@@ -1,0 +1,45 @@
+/* === Variáveis de Cores para Loja de Bijuterias === */
+$cor-fundo: #F8F8F8;
+$cor-primaria: #1C1C1C;
+$cor-secundaria: #4A4A4A;
+$cor-detalhe: #C9A368; // dourado elegante
+$cor-texto: #1C1C1C;
+$cor-branco: #FFFFFF;
+
+/* === Reset Básico === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background-color: $cor-fundo;
+  color: $cor-texto;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}

@@ -1,0 +1,292 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  background: #fff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+
+  h2 {
+    font-size: 2rem;
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .grid3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1.2rem;
+    align-items: end;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #444;
+
+    input, select, textarea {
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background: #fefefe;
+      transition: border 0.2s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #a979ff;
+      outline: none;
+    }
+  }
+
+  /* Estilos para o seletor de categoria */
+  .categorySelector {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+
+    select {
+      flex: 1;
+      padding: 0.9rem 1rem;
+    }
+
+    .addCategoryButton {
+      width: 42px;
+      height: 42px;
+      background: #6f42c1;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: #5a32a3;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  /* Estilos para o input de nova categoria */
+  .newCategoryInput {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: #f9f5ff;
+    border-radius: 12px;
+    border: 1px solid #e9d8ff;
+    animation: fadeIn 0.3s ease;
+
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      transition: border 0.2s ease;
+
+      &:focus {
+        border-color: #a979ff;
+        outline: none;
+      }
+    }
+  }
+
+  /* Estilos para os botões de ação da nova categoria */
+  .newCategoryActions {
+    display: flex;
+    gap: 0.8rem;
+
+    button {
+      flex: 1;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .confirmButton {
+      background: #38a169;
+      color: white;
+
+      &:hover {
+        background: #2f855a;
+        transform: translateY(-1px);
+      }
+    }
+
+    .cancelButton {
+      background: #e53e3e;
+      color: white;
+
+      &:hover {
+        background: #c53030;
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .checkboxGroup {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .checkboxContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .checkboxInput {
+    width: 18px;
+    height: 18px;
+    accent-color: #6f42c1;
+    cursor: pointer;
+  }
+
+  .checkboxLabel {
+    font-weight: 500;
+    color: #444;
+    user-select: none;
+  }
+
+  .imageLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #444;
+  }
+
+  .imagePreview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+
+    img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .submitButton {
+    background-color: #6f42c1;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #5a32a3;
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      background-color: #b9a0e6;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}
+
+/* Animação para o input de nova categoria */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 480px) {
+  .form {
+    padding: 1.5rem;
+
+    .newCategoryActions {
+      flex-direction: column;
+    }
+  }
+}
+.stockInfo {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  
+  span {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+}
+
+.stockNumbersPreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.stockNumberTag {
+  background: #f0f0f0;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.moreNumbers {
+  font-size: 0.8rem;
+  color: #666;
+  align-self: center;
+}
+
+/* Melhorias no textarea */
+textarea {
+  min-height: 120px;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+}
