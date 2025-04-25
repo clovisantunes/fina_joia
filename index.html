@@ -4,10 +4,83 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Joia-Fina</title>
+    
+    <!-- Meta Tags Essenciais para SEO -->
+    <title>Joia-Fina | Bijuterias Finas em Sapiranga/RS | Acessórios Femininos</title>
+    <meta name="description" content="Joia-Fina - A maior loja de bijuterias finas em Sapiranga/RS. Coleções exclusivas, peças em prata, pedras semipreciosas e acessórios femininos com excelente custo-benefício.">
+    <meta name="keywords" content="bijuterias Sapiranga, joias finas RS, acessórios femininos, prata bijuterias, pedras semipreciosas, colares, pulseiras, brincos, anéis, moda feminina RS">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Joia-Fina | Bijuterias Finas em Sapiranga/RS">
+    <meta property="og:description" content="As melhores bijuterias finas da região de Sapiranga/RS. Coleções exclusivas para mulheres que amam se adornar com elegância.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.joia-fina.com.br">
+    <meta property="og:image" content="https://www.joia-fina.com.br/images/logo-social.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.joia-fina.com.br" />
+    
+    <!-- Schema Markup para Local Business -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "JewelryStore",
+      "name": "Joia-Fina",
+      "image": "https://www.joia-fina.com.br/images/logo.jpg",
+      "@id": "https://www.joia-fina.com.br",
+      "url": "https://www.joia-fina.com.br",
+      "telephone": "+55 51 XXXX-XXXX",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Exemplo, 123",
+        "addressLocality": "Sapiranga",
+        "addressRegion": "RS",
+        "postalCode": "93800-000",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-29.6347",
+        "longitude": "-51.0064"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "priceRange": "$$"
+    }
+    </script>
+    
+    <!-- Preload de fontes críticas -->
+    <link rel="preload" href="/fonts/custom-font.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- CSS crítico inline (opcional para performance) -->
+    <style>
+      /* Estilos críticos para above-the-fold */
+    </style>
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Web Vitals (opcional para monitoramento) -->
+    <script>
+      if ('webVitals' in window) {
+        window.addEventListener('load', function() {
+          webVitals.getCLS(console.log);
+          webVitals.getFID(console.log);
+          webVitals.getLCP(console.log);
+        });
+      }
+    </script>
   </body>
 </html>
