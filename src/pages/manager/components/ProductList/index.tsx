@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../../../firebase/firebase";
-import { Link } from "react-router-dom";
 import styles from "./styles.module.scss";
 import EditProductModal from "../ProductEdit";
 

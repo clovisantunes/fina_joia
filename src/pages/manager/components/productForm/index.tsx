@@ -148,7 +148,7 @@ export default function AddProduct() {
   };
 
   const uploadImages = async (productId: string): Promise<string[]> => {
-    const uploadPromises = images.map(async (image, index) => {
+    const uploadPromises = images.map(async (image) => {
       const storageRef = ref(storage, `products/${productId}/${image.name}_${Date.now()}`);
       const snapshot = await uploadBytes(storageRef, image);
       const downloadURL = await getDownloadURL(snapshot.ref);

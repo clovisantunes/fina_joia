@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { FaWhatsapp, FaShare, FaHeart, FaExpand } from 'react-icons/fa';
+import { FaWhatsapp, FaExpand } from 'react-icons/fa';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebase';
 import MoreSells from '../../components/MoreSells';

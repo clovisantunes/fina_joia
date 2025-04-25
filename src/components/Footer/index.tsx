@@ -1,5 +1,4 @@
-import React from 'react';
-import { FaInstagram, FaFacebook, FaPinterest, FaWhatsapp, FaPhone, FaMapMarkerAlt, FaEnvelope, FaClock } from 'react-icons/fa';
+import { FaInstagram,  FaWhatsapp,  FaMapMarkerAlt, FaEnvelope, FaClock } from 'react-icons/fa';
 import styles from './styles.module.scss';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';

@@ -24,7 +24,6 @@ export default function PremiumNavbar() {
   const [cartCount, setCartCount] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [scrolled, setScrolled] = useState(false);
@@ -84,7 +83,6 @@ export default function PremiumNavbar() {
         console.error("Erro ao buscar categorias:", error);
         setDefaultCategories();
       } finally {
-        setLoading(false);
       }
     };
 

@@ -1,4 +1,4 @@
-import { Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import News from './components/News';
@@ -7,7 +7,6 @@ import MoreSells from './components/MoreSells';
 import Produtos from './pages/Products';
 import ProductDetail from './pages/productDetails';
 import Auth from './pages/auth';
-import { useEffect } from 'react';
 import Manager from './pages/manager';
 import Cart from './pages/Cart';
 import SearchResults from './pages/SearchResult';
@@ -22,10 +21,7 @@ function AppWrapper() {
 }
 
 function App() {
-  const location = useLocation();
 
-  // Verifica se estamos na página de auth
-  const isAuthPage = location.pathname === '/auth';
 
   return (
     <>

@@ -135,11 +135,7 @@ export default function Cart() {
     }
   };
 
-  const getItemPrice = (item: CartItem) => {
-    return paymentMethod === "pix" || paymentMethod === "cash"
-      ? item.pixPrice
-      : item.price;
-  };
+
 
   return (
     <div className={styles.container}>
