@@ -186,7 +186,7 @@ export default function News({ name }: NewsProps) {
   return (
     <section className={styles.newsSection} id={name}>
       <div className={styles.sectionHeader}>
-        <div>
+        <div className={styles.sectionTitleContainer}>
           <span className={styles.sectionTag}>Novidades</span>
           <h2 className={styles.sectionTitle}>Coleção Exclusiva</h2>
         </div>

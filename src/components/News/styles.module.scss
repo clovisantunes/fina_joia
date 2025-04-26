@@ -423,7 +423,12 @@
   50% { transform: translateY(-5px); }
   100% { transform: translateY(0px); }
 }
-
+.sectionTitleContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .buyButton {
   padding: 12px 24px;
   border: none;
