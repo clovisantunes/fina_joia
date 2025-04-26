@@ -1,83 +1,102 @@
-import { FaInstagram,  FaWhatsapp,  FaMapMarkerAlt, FaEnvelope, FaClock } from 'react-icons/fa';
-import styles from './styles.module.scss';
-import logo from '../../assets/logo.png';
-import { Link } from 'react-router-dom';
+import {
+  FaInstagram,
+  FaWhatsapp,
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaBarcode,
+  FaCcVisa,
+  FaCcMastercard,
+  FaQrcode
+} from "react-icons/fa";
+import styles from "./styles.module.scss";
+import logo from "../../assets/logo.png";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerTop}>
-        <div className={styles.footerContainer}>
-          <div className={styles.footerColumn}>
-            <img src={logo} alt="Logo da Joalheria" className={styles.footerLogo} />
-            <p className={styles.footerAbout}>
-            Explorando o encanto das bijuterias, oferecemos peças exclusivas e cheias de estilo para todos os momentos. Nossa missão é proporcionar beleza e elegância a cada cliente, com produtos que refletem qualidade e sofisticação. Navegue por nossas coleções e descubra o acessório perfeito para você ou para presentear alguém especial.
-            </p>
-            <div className={styles.socialIcons}>
-              <a href="#" aria-label="Instagram"><FaInstagram /></a>
-            </div>
+      <div className={styles.footerContainer}>
+        {/* Coluna 1: Logo e Redes Sociais */}
+        <div className={styles.footerColumn}>
+          <img 
+            src={logo} 
+            alt="Belafina Joias - Bijuterias Finas" 
+            className={styles.logo} 
+            loading="lazy"
+          />
+          <div className={styles.socialIcons}>
+            <a 
+              href="https://instagram.com/belafina" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Instagram Belafina"
+            >
+              <FaInstagram />
+            </a>
+            <a 
+              href="https://wa.me/5551999999999" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="WhatsApp Belafina"
+            >
+              <FaWhatsapp />
+            </a>
           </div>
+        </div>
 
-          <div className={styles.footerColumn}>
-            <h3 className={styles.footerTitle}>Links Rápidos</h3>
-            <ul className={styles.footerLinks}>
-              <li><a href="#">Página Inicial</a></li>
-              <li><a href="#novidades">Novidades</a></li>
-              <li><a href="#maisvendidos">Mais Vendidos</a></li>
-              <li><a href="#colecao">Coleções</a></li>
-              <li><a href="#">Contato</a></li>
-            </ul>
-          </div>
+        {/* Coluna 2: Links Úteis */}
+        <div className={styles.footerColumn}>
+          <h3 className={styles.columnTitle}>Navegação</h3>
+          <ul className={styles.linksList}>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/produtos">Catálogo</Link></li>
+            <li><Link to="/sobre">Sobre Nós</Link></li>
+            <li><Link to="/contato">Contato</Link></li>
+          </ul>
+        </div>
 
-          <div className={styles.footerColumn}>
-  <h3 className={styles.footerTitle}>Categorias</h3>
-  <ul className={styles.footerLinks}>
-    <li><Link to="/produtos#aneis">Anéis</Link></li>
-    <li><Link to="/produtos#brincos">Brincos</Link></li>
-    <li><Link to="/produtos#colares">Colares</Link></li>
-    <li><Link to="/produtos#brincos">Brincos</Link></li>
-    <li><Link to="/produtos#kits-revenda">Kits Revenda</Link></li>
-  </ul>
-</div>
-
-          <div className={styles.footerColumn}>
-            <h3 className={styles.footerTitle}>Contato</h3>
-            <ul className={styles.contactInfo}>
-              <li>
-                <FaMapMarkerAlt />
-                <span>Sapiranga, RS</span>
-              </li>
-              <li>
-                <FaWhatsapp />
-                <span>(11) 98888-8888</span>
-              </li>
-              <li>
-                <FaEnvelope />
-                <span>contato@belafina.com.br</span>
-              </li>
-              <li>
-                <FaClock />
-                <span>Seg-Sex: 10h-19h | Sáb: 10h-16h</span>
-              </li>
-            </ul>
-          </div>
+        {/* Coluna 3: Contatos */}
+        <div className={styles.footerColumn}>
+          <h3 className={styles.columnTitle}>Contato</h3>
+          <ul className={styles.contactList}>
+            <li>
+              <FaMapMarkerAlt aria-hidden="true" />
+              <span>Sapiranga, RS</span>
+            </li>
+            <li>
+              <FaWhatsapp aria-hidden="true" />
+              <a href="https://wa.me/5551999999999">(51) 99999-9999</a>
+            </li>
+            <li>
+              <FaEnvelope aria-hidden="true" />
+              <a href="mailto:contato@belafina.com.br">contato@belafina.com.br</a>
+            </li>
+          </ul>
         </div>
       </div>
 
+      {/* Rodapé Inferior */}
       <div className={styles.footerBottom}>
-        <div className={styles.footerContainer}>
-          <p className={styles.copyright}>
-            © {new Date().getFullYear()} Joalheria Luxo. Todos os direitos reservados.
-          </p>
-          <div className={styles.paymentMethods}>
-            <span>Formas de pagamento:</span>
-            <div className={styles.paymentIcons}>
-              <i className={styles.visa}></i>
-              <i className={styles.mastercard}></i>
-              <i className={styles.amex}></i>
-              <i className={styles.pix}></i>
-              <i className={styles.boleto}></i>
-            </div>
+        <p className={styles.copyright}>
+          © {new Date().getFullYear()} Belafina Joias. Todos direitos reservados.
+        </p>
+
+        {/* Botão Secreto (invisível) */}
+        <Link 
+          to="/auth" 
+          className={styles.secretButton}
+          aria-hidden="true"
+          tabIndex={-1}
+        />
+
+        {/* Métodos de Pagamento */}
+        <div className={styles.paymentMethods}>
+          <span className={styles.paymentText}>Pagamento:</span>
+          <div className={styles.paymentIcons}>
+            <FaCcVisa aria-label="Cartão Visa" />
+            <FaCcMastercard aria-label="Cartão Mastercard" />
+            <FaQrcode aria-label="Pix" />
+            <FaBarcode aria-label="Boleto Bancário" />
           </div>
         </div>
       </div>
