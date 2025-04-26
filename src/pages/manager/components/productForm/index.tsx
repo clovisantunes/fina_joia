@@ -15,6 +15,7 @@ type Product = {
   sold: number;
   featured: boolean;
   stockId: string;
+  tags: string[];
   createdAt: {
     day: number;
     month: number;
@@ -38,6 +39,7 @@ export default function AddProduct() {
     sold: 0,
     featured: false,
     stockId: "",
+    tags: [],
     createdAt: {
       day: new Date().getDate(),
       month: new Date().getMonth() + 1,
@@ -205,6 +207,7 @@ export default function AddProduct() {
         sold: 0,
         featured: false,
         stockId: "",
+        tags: [],
         createdAt: {
           day: currentDate.getDate(),
           month: currentDate.getMonth() + 1,
@@ -220,6 +223,14 @@ export default function AddProduct() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+  const handleTagsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const tagsArray = value.split(',')
+      .map(tag => tag.trim())
+      .filter(tag => tag.length > 0);
+    
+    setProduct(prev => ({ ...prev, tags: tagsArray }));
   };
 
   return (
@@ -339,7 +350,21 @@ export default function AddProduct() {
           </div>
         </label>
       </div>
-
+      <label className={styles.inputGroup}>
+  Tags/Palavras-chave (separadas por vírgula)
+  <input 
+    type="text" 
+    placeholder="Exemplo: anel, dourado, rosa, promoção"
+    onChange={handleTagsChange}
+  />
+  {product.tags.length > 0 && (
+    <div className={styles.tagsPreview}>
+      {product.tags.map((tag, index) => (
+        <span key={index} className={styles.tag}>{tag}</span>
+      ))}
+    </div>
+  )}
+</label>
       <label className={styles.imageLabel}>
         Fotos do produto (Máx. 10 imagens)
         <input 

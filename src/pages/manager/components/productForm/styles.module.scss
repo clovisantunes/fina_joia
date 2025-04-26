@@ -276,6 +276,21 @@
   color: #333;
   border: 1px solid #ddd;
 }
+.tagsPreview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.tag {
+  background: #f0f0f0;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: #333;
+  border: 1px solid #ddd;
+}
 
 .moreNumbers {
   font-size: 0.8rem;
