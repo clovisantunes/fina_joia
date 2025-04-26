@@ -102,7 +102,7 @@ export default function Cart() {
       selectedCity === "outra" ? customCity : getCityName(selectedCity)
     }%0AEndereço: ${customerAddress}`;
 
-    window.open(`https://wa.me/5511999999999?text=${message}`, "_blank");
+    window.open(`https://wa.me/5551981434411?text=${message}`, "_blank");
   };
 
   const getPaymentMethodName = () => {

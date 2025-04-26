@@ -206,10 +206,12 @@ export default function ProductDetail() {
   >
     Adicionar ao Carrinho
   </button>
-          <div className={styles.whatsappContact}>
-            <FaWhatsapp />
-            <span>Tire suas dúvidas pelo WhatsApp</span>
-          </div>
+  <div className={styles.whatsappContact}>
+  <a href="https://wa.me/5551981434411" target="_blank" rel="noopener noreferrer">
+    <FaWhatsapp />
+    <span>Tire suas dúvidas pelo WhatsApp</span>
+  </a>
+</div>
         </div>
       </div>
 

@@ -16,7 +16,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContainer}>
-        {/* Coluna 1: Logo e Redes Sociais */}
+
         <div className={styles.footerColumn}>
           <img 
             src={logo} 
@@ -34,7 +34,7 @@ export default function Footer() {
               <FaInstagram />
             </a>
             <a 
-              href="https://wa.me/5551999999999" 
+              href="https://wa.me/5551981434411" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="WhatsApp Belafina"
@@ -44,7 +44,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Coluna 2: Links Úteis */}
+  
         <div className={styles.footerColumn}>
           <h3 className={styles.columnTitle}>Navegação</h3>
           <ul className={styles.linksList}>
@@ -55,7 +55,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Coluna 3: Contatos */}
+
         <div className={styles.footerColumn}>
           <h3 className={styles.columnTitle}>Contato</h3>
           <ul className={styles.contactList}>
@@ -65,7 +65,7 @@ export default function Footer() {
             </li>
             <li>
               <FaWhatsapp aria-hidden="true" />
-              <a href="https://wa.me/5551999999999">(51) 99999-9999</a>
+              <a href="https://wa.me/5551981434411">(51) 98143-4411</a>
             </li>
             <li>
               <FaEnvelope aria-hidden="true" />
@@ -75,13 +75,13 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Rodapé Inferior */}
+
       <div className={styles.footerBottom}>
         <p className={styles.copyright}>
           © {new Date().getFullYear()} Belafina Joias. Todos direitos reservados.
         </p>
 
-        {/* Botão Secreto (invisível) */}
+    
         <Link 
           to="/auth" 
           className={styles.secretButton}
@@ -89,7 +89,7 @@ export default function Footer() {
           tabIndex={-1}
         />
 
-        {/* Métodos de Pagamento */}
+ 
         <div className={styles.paymentMethods}>
           <span className={styles.paymentText}>Pagamento:</span>
           <div className={styles.paymentIcons}>
