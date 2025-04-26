@@ -82,15 +82,20 @@ export default function AddProduct() {
       querySnapshot.forEach(doc => {
         const data = doc.data();
         if (data.stockId) {
-          const idNum = parseInt(data.stockId.replace("E-", ""));
-          if (idNum > maxId) maxId = idNum;
+          // Corrigindo a extração do número do ID
+          const idMatch = data.stockId.match(/STK-(\d+)/);
+          if (idMatch && idMatch[1]) {
+            const idNum = parseInt(idMatch[1]);
+            if (idNum > maxId) maxId = idNum;
+          }
         }
       });
       
       return `STK-${maxId + 1}`;
     } catch (error) {
       console.error("Erro ao gerar ID sequencial:", error);
-      return `STK-${Date.now()}`;
+      // Fallback: retorna um ID baseado no timestamp
+      return `STK-${Math.floor(Date.now() / 1000)}`;
     }
   };
 
