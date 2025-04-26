@@ -188,9 +188,9 @@ export default function CategoryFilter({ name }: ItemsProps) {
                       </span>
                     </div>
                     <div className={styles.installmentPrice}>
-                      <span className={styles.priceLabel}>Ou 12x de:</span>
+                      <span className={styles.priceLabel}>Ou no debito/credito:</span>
                       <span className={styles.priceValue}>
-                        R$ {(product.price / 12).toFixed(2).replace('.', ',')}
+                        R$ {(product.price).toFixed(2).replace('.', ',')}
                       </span>
                     </div>
                   </div>

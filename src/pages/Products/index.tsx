@@ -192,7 +192,7 @@ export default function Produtos() {
                   
                   <div className={styles.pricing}>
                     <div className={styles.regularPrice}>
-                      <span className={styles.priceLabel}>Preço:</span>
+                      <span className={styles.priceLabel}>debito/credito:</span>
                       <span className={styles.priceValue}>
                         R$ {produto.price.toFixed(2).replace('.', ',')}
                       </span>
