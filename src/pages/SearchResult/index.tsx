@@ -5,6 +5,7 @@ import { db } from '../../firebase/firebase';
 import styles from './styles.module.scss';
 import { addToCart } from '../../components/UI/Cart';
 
+
 interface Produto {
   id: string;
   title: string;

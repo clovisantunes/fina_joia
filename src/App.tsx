@@ -10,8 +10,8 @@ import Auth from './pages/auth';
 import Manager from './pages/manager';
 import Cart from './pages/Cart';
 import SearchResults from './pages/SearchResult';
+import useScrollToTop from './Utils/useScrollToTop';
 
-// Wrapper para permitir uso de hooks fora do Router
 function AppWrapper() {
   return (
     <Router>
@@ -23,6 +23,7 @@ function AppWrapper() {
 function App() {
 
 
+  useScrollToTop();
   return (
     <>
       {window.location.pathname !== "/auth" && window.location.pathname !== "/manager" && <Navbar />}

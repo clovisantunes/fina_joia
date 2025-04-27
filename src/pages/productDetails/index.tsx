@@ -6,6 +6,7 @@ import { db } from '../../firebase/firebase';
 import MoreSells from '../../components/MoreSells';
 import styles from './styles.module.scss';
 import { addToCart } from '../../components/UI/Cart';
+import useScrollToTop from '../../Utils/useScrollToTop';
 
 // Detalhes fixos que serão aplicados a todos os produtos
 const FIXED_DETAILS = [
@@ -40,7 +41,7 @@ export default function ProductDetail() {
   const [mainImage, setMainImage] = useState<string>('');
   const [zoomActive, setZoomActive] = useState(false);
   const navigate = useNavigate();
-  
+  useScrollToTop();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
