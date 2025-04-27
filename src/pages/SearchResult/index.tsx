@@ -15,6 +15,7 @@ interface Produto {
   imageUrls: string[];
   stock: number;
   featured: boolean;
+  tags?: string[];
 }
 
 export default function SearchResults() {
@@ -42,37 +43,44 @@ export default function SearchResults() {
     try {
       setLoading(true);
       const produtosRef = collection(db, 'products');
-      const searchTermLower = searchTerm.toLowerCase();
+      const searchTermLower = searchTerm.toLowerCase().trim();
       
-      // Primeiro filtro: busca exata na categoria
-      const qCategory = query(
-        produtosRef,
-        where('category', '==', searchTermLower)
-      );
-      
-      // Segundo filtro: busca por correspondência parcial no título
+      // Primeiro busca por correspondência exata ou parcial nos campos principais
       const qTitle = query(
         produtosRef,
         where('titleLower', '>=', searchTermLower),
         where('titleLower', '<=', searchTermLower + '\uf8ff')
       );
       
-      // Terceiro filtro: busca por correspondência parcial na descrição
       const qDescription = query(
         produtosRef,
         where('descriptionLower', '>=', searchTermLower),
         where('descriptionLower', '<=', searchTermLower + '\uf8ff')
       );
-
+      
+      const qCategory = query(
+        produtosRef,
+        where('category', '>=', searchTermLower),
+        where('category', '<=', searchTermLower + '\uf8ff')
+      );
+  
+      // Busca exata nas tags (array-contains)
+      const qTags = query(
+        produtosRef,
+        where('tags', 'array-contains', searchTermLower)
+      );
+  
       // Executa todas as queries em paralelo
-      const [categorySnapshot, titleSnapshot, descriptionSnapshot] = await Promise.all([
-        getDocs(qCategory),
+      const [titleSnapshot, descriptionSnapshot, categorySnapshot, tagsSnapshot] = await Promise.all([
         getDocs(qTitle),
-        getDocs(qDescription)
+        getDocs(qDescription),
+        getDocs(qCategory),
+        getDocs(qTags)
       ]);
-
+  
       const produtosMap = new Map<string, Produto>();
       
+      // Função para processar os snapshots
       const processSnapshot = (snapshot: any) => {
         snapshot.forEach((doc: any) => {
           const data = doc.data();
@@ -86,20 +94,72 @@ export default function SearchResults() {
               description: data.description || '',
               imageUrls: data.imageUrls || [],
               stock: data.stock || 0,
-              featured: data.featured || false
+              featured: data.featured || false,
+              tags: data.tags || [] // Adicionando tags ao objeto produto
             });
           }
         });
       };
       
-      processSnapshot(categorySnapshot);
       processSnapshot(titleSnapshot);
       processSnapshot(descriptionSnapshot);
+      processSnapshot(categorySnapshot);
+      processSnapshot(tagsSnapshot);
       
+      // Filtro adicional no cliente para buscas mais flexíveis
       const produtosData = Array.from(produtosMap.values());
       
-      setProdutos(produtosData);
-      setError(produtosData.length === 0 ? 'Nenhum produto encontrado' : null);
+      // Se não encontrou resultados suficientes, faz um filtro mais amplo no cliente
+      if (produtosData.length < 5) {
+        const allProductsSnapshot = await getDocs(produtosRef);
+        const allProducts: Produto[] = [];
+        
+        allProductsSnapshot.forEach((doc: any) => {
+          const data = doc.data();
+          allProducts.push({
+            id: doc.id,
+            title: data.title || '',
+            category: data.category || '',
+            price: data.price || 0,
+            pixPrice: data.pixPrice || '0',
+            description: data.description || '',
+            imageUrls: data.imageUrls || [],
+            stock: data.stock || 0,
+            featured: data.featured || false,
+            tags: data.tags || []
+          });
+        });
+        
+        // Filtra por correspondência parcial em qualquer campo
+        const filteredProducts = allProducts.filter(produto => {
+          const searchText = searchTermLower;
+          
+          // Verifica em todos os campos textuais
+          return (
+            (produto.title.toLowerCase().includes(searchText)) ||
+            (produto.description.toLowerCase().includes(searchText)) ||
+            (produto.category.toLowerCase().includes(searchText)) ||
+            (produto.tags?.some((tag: string) => tag.toLowerCase().includes(searchText)) ?? false)
+          );
+        });
+        
+        // Combina os resultados (elimina duplicatas)
+        filteredProducts.forEach(produto => {
+          if (!produtosMap.has(produto.id)) {
+            produtosMap.set(produto.id, produto);
+          }
+        });
+      }
+      
+      // Ordena por relevância (produtos com matches no título primeiro)
+      const sortedProducts = Array.from(produtosMap.values()).sort((a, b) => {
+        const aTitleMatch = a.title.toLowerCase().includes(searchTermLower) ? 1 : 0;
+        const bTitleMatch = b.title.toLowerCase().includes(searchTermLower) ? 1 : 0;
+        return bTitleMatch - aTitleMatch;
+      });
+      
+      setProdutos(sortedProducts);
+      setError(sortedProducts.length === 0 ? 'Nenhum produto encontrado' : null);
     } catch (err) {
       console.error('Erro na busca:', err);
       setError('Erro ao buscar produtos. Tente novamente mais tarde.');
