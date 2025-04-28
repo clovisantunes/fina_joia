@@ -21,8 +21,6 @@ function AppWrapper() {
 }
 
 function App() {
-
-
   useScrollToTop();
   return (
     <>
