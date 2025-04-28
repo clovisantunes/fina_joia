@@ -234,7 +234,7 @@ export default function PremiumNavbar() {
 
           <div className={styles.mobileContact}>
             <a
-              href="https://wa.me/5511999999999"
+              href="https://wa.me/5551981434411"
               className={styles.whatsappButton}
             >
               <FaWhatsapp /> Fale conosco
