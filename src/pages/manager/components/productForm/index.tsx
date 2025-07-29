@@ -94,7 +94,6 @@ export default function AddProduct() {
       return `STK-${maxId + 1}`;
     } catch (error) {
       console.error("Erro ao gerar ID sequencial:", error);
-      // Fallback: retorna um ID baseado no timestamp
       return `STK-${Math.floor(Date.now() / 1000)}`;
     }
   };

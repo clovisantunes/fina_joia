@@ -1,0 +1,211 @@
+// src/components/PageLoader.module.scss
+.loaderWrapper {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2b2b2b 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  opacity: 1;
+
+  &.exit {
+    animation: elegantFadeOut 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  }
+}
+
+.logoContainer {
+  position: relative;
+  width: 300px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation:
+    softMaterialize 1.8s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards,
+    gentlePulse 4s 1.8s ease-in-out infinite;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  position: relative;
+  filter:
+    drop-shadow(0 0 12px rgba(255, 255, 255, 0.6))
+    drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.whiteAura {
+  position: absolute;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 70%);
+  animation: auraGlow 5s ease-in-out infinite alternate;
+  z-index: 1;
+  opacity: 0;
+  animation-delay: 1s;
+}
+
+.pearlParticles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  .particle {
+    position: absolute;
+    background: radial-gradient(circle,
+      rgba(255, 255, 255, 0.9) 0%,
+      rgba(240, 240, 240, 0) 80%);
+    border-radius: 50%;
+    animation: pearlFloat 18s infinite linear;
+    opacity: 0;
+  }
+
+  @for $i from 1 through 20 {
+    .particle:nth-child(#{$i}) {
+      $size: random(8) + 4px;
+      width: $size;
+      height: $size;
+      top: random(100) + '%';
+      left: random(100) + '%';
+      animation-delay: random(4) + s;
+      animation-duration: random(20) + 15 + s;
+    }
+  }
+}
+
+@keyframes softMaterialize {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px) scale(0.95);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateX(3px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.03) rotate(0.5deg); }
+}
+
+@keyframes elegantFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: blur(5px);
+  }
+}
+
+@keyframes auraGlow {
+  0% { opacity: 0; transform: scale(0.9); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+  100% { opacity: 0.3; transform: scale(1); }
+}
+
+@keyframes pearlFloat {
+  0% {
+    transform: translate(0, 0) scale(0.7);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate(15px, 10px) scale(1);
+  }
+  80% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(5px, -5px) scale(0.8);
+    opacity: 0;
+  }
+}
+
+.pearlBrush {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFFFFF" opacity="0.08" d="M20,20 Q50,0 80,20 L90,50 Q80,80 50,90 Q20,80 10,50 Z" /></svg>') no-repeat;
+  z-index: 3;
+  opacity: 0;
+  animation: brushReveal 1.2s ease-out forwards,
+             brushSway 3s 1.2s ease-in-out infinite;
+
+  &:nth-child(1) {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0.6s, 1.8s;
+  }
+
+  &:nth-child(2) {
+    top: 65%;
+    left: 70%;
+    animation-delay: 0.8s, 2s;
+  }
+}
+
+@keyframes brushReveal {
+  from { opacity: 0; transform: scale(0.7) rotate(-8deg); }
+  to { opacity: 0.2; transform: scale(1) rotate(0); }
+}
+
+@keyframes brushSway {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.lipMark {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFFFFF" opacity="0.05" d="M30,50 Q50,35 70,50 Q60,70 50,75 Q40,70 30,50" /></svg>') no-repeat;
+  animation: lipPrint 14s infinite linear;
+
+  &:nth-child(1) {
+    top: 25%;
+    left: 20%;
+  }
+  &:nth-child(2) {
+    top: 70%;
+    left: 75%;
+    animation-delay: 7s;
+  }
+}
+
+@keyframes lipPrint {
+  0% { transform: scale(0.6) rotate(10deg); opacity: 0; }
+  15% { opacity: 0.08; }
+  30% { transform: scale(1.1) rotate(-5deg); }
+  45% { opacity: 0.1; }
+  60% { transform: scale(0.8) rotate(8deg); }
+  85% { opacity: 0; }
+  100% { transform: scale(0.7) rotate(-5deg); opacity: 0; }
+}

@@ -11,8 +11,18 @@ import Manager from './pages/manager';
 import Cart from './pages/Cart';
 import SearchResults from './pages/SearchResult';
 import useScrollToTop from './Utils/useScrollToTop';
+import { useEffect, useState } from 'react';
+import PageLoader from './pages/manager/components/PageLoader';
 
 function AppWrapper() {
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setLoading(false), 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (loading) return <PageLoader />;
   return (
     <Router>
       <App />
