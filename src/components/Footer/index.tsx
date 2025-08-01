@@ -50,8 +50,6 @@ export default function Footer() {
           <ul className={styles.linksList}>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/produtos">Catálogo</Link></li>
-            <li><Link to="/sobre">Sobre Nós</Link></li>
-            <li><Link to="/contato">Contato</Link></li>
           </ul>
         </div>
 
@@ -67,10 +65,7 @@ export default function Footer() {
               <FaWhatsapp aria-hidden="true" />
               <a href="https://wa.me/5551981434411">(51) 98143-4411</a>
             </li>
-            <li>
-              <FaEnvelope aria-hidden="true" />
-              <a href="mailto:contato@belafina.com.br">contato@belafina.com.br</a>
-            </li>
+          
           </ul>
         </div>
       </div>

@@ -23,7 +23,49 @@
     overflow-y: auto;
     animation: modalFadeIn 0.3s ease;
   }
-  
+  .imagePreviewContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.imageItem {
+  position: relative;
+  display: inline-block;
+}
+
+.imagePreview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.removeImageButton {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagePreview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
   .modalHeader {
     display: flex;
     justify-content: space-between;

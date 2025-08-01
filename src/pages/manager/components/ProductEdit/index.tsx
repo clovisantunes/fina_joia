@@ -2,6 +2,7 @@ import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../../../firebase/firebase";
 import styles from "./styles.module.scss";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 type Product = {
   id: string;
@@ -43,6 +44,37 @@ export default function EditProductModal({ product, onClose, onUpdate }: EditPro
       [name]: checked
     }));
   };
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const files = e.target.files;
+  if (!files || files.length === 0) return;
+
+  const storage = getStorage();
+  const newImageUrls: string[] = [];
+
+  try {
+    for (const file of Array.from(files)) {
+      const imageRef = ref(storage, `products/${formData.id}/${file.name}`);
+      await uploadBytes(imageRef, file);
+      const url = await getDownloadURL(imageRef);
+      newImageUrls.push(url);
+    }
+
+    setFormData(prev => ({
+      ...prev,
+      imageUrls: [...prev.imageUrls, ...newImageUrls],
+    }));
+  } catch (error) {
+    console.error("Erro ao fazer upload das imagens:", error);
+    setError("Erro ao enviar imagem. Tente novamente.");
+  }
+};
+const handleRemoveImage = (indexToRemove: number) => {
+  setFormData(prev => ({
+    ...prev,
+    imageUrls: prev.imageUrls.filter((_, index) => index !== indexToRemove),
+  }));
+};
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,7 +90,8 @@ export default function EditProductModal({ product, onClose, onUpdate }: EditPro
         pixPrice: formData.pixPrice,
         description: formData.description,
         stock: formData.stock,
-        featured: formData.featured
+        featured: formData.featured,
+         imageUrls: formData.imageUrls,
       });
 
       onUpdate(formData);
@@ -166,6 +199,34 @@ export default function EditProductModal({ product, onClose, onUpdate }: EditPro
               </label>
             </div>
           </div>
+<div className={styles.formGroup}>
+  <label>Imagens Atuais</label>
+  <div className={styles.imagePreviewContainer}>
+    {formData.imageUrls.map((url, index) => (
+      <div key={index} className={styles.imageItem}>
+        <img src={url} alt={`Imagem ${index + 1}`} className={styles.imagePreview} />
+        <button
+          type="button"
+          className={styles.removeImageButton}
+          onClick={() => handleRemoveImage(index)}
+        >
+          X
+        </button>
+      </div>
+    ))}
+  </div>
+</div>
+
+
+<div className={styles.formGroup}>
+  <label>Adicionar Novas Imagens</label>
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    onChange={handleImageUpload}
+  />
+</div>
 
           <div className={styles.formGroup}>
             <label>Descrição</label>
@@ -179,6 +240,7 @@ export default function EditProductModal({ product, onClose, onUpdate }: EditPro
           </div>
 
           {error && <div className={styles.errorMessage}>{error}</div>}
+
 
           <div className={styles.formActions}>
             <button
