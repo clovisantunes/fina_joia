@@ -2,7 +2,6 @@ import {
   FaInstagram,
   FaWhatsapp,
   FaMapMarkerAlt,
-  FaEnvelope,
   FaBarcode,
   FaCcVisa,
   FaCcMastercard,
